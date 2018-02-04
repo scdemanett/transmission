@@ -15,7 +15,7 @@ popd
 
 ### OPENSSL ###
 _build_openssl() {
-local VERSION="1.0.2k"
+local VERSION="1.0.2n"
 local FOLDER="openssl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
 local URL="http://www.openssl.org/source/${FILE}"
@@ -43,7 +43,7 @@ popd
 
 ### CURL ###
 _build_curl() {
-local VERSION="7.52.1"
+local VERSION="7.58.0"
 local FOLDER="curl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
 local URL="http://curl.haxx.se/download/${FILE}"
@@ -78,10 +78,10 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
-local VERSION="2.92"
+local VERSION="2.93"
 local FOLDER="transmission-${VERSION}"
 local FILE="${FOLDER}.tar.xz"
-local URL="https://transmission.cachefly.net/${FILE}"
+local URL="https://github.com/transmission/transmission-releases/raw/master/${FILE}"
 
 _download_xz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"

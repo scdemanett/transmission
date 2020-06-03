@@ -15,7 +15,7 @@ popd
 
 ### OPENSSL ###
 _build_openssl() {
-local VERSION="1.0.2n"
+local VERSION="1.1.1g"
 local FOLDER="openssl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
 local URL="http://www.openssl.org/source/${FILE}"
@@ -43,7 +43,7 @@ popd
 
 ### CURL ###
 _build_curl() {
-local VERSION="7.58.0"
+local VERSION="7.70.0"
 local FOLDER="curl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
 local URL="http://curl.haxx.se/download/${FILE}"
@@ -62,7 +62,7 @@ popd
 
 ### LIBEVENT ###
 _build_libevent() {
-local VERSION="2.1.8-stable"
+local VERSION="2.1.11-stable"
 local FOLDER="libevent-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
 local URL="https://github.com/libevent/libevent/releases/download/release-${VERSION}/${FILE}"
@@ -78,7 +78,7 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
-local VERSION="2.93"
+local VERSION="3.00"
 local FOLDER="transmission-${VERSION}"
 local FILE="${FOLDER}.tar.xz"
 local URL="https://github.com/transmission/transmission-releases/raw/master/${FILE}"

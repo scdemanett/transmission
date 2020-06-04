@@ -33,7 +33,7 @@ make
 make install_sw
 cp -vfa "${DEPS}/lib/libssl.so"* "${DEST}/lib/"
 cp -vfa "${DEPS}/lib/libcrypto.so"* "${DEST}/lib/"
-cp -vfaR "${DEPS}/lib/engines" "${DEST}/lib/"
+cp -vfaR "${DEPS}/lib/engines-1.1" "${DEST}/lib/"
 cp -vfaR "${DEPS}/lib/pkgconfig" "${DEST}/lib/"
 rm -vf "${DEPS}/lib/libcrypto.a" "${DEPS}/lib/libssl.a"
 sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libcrypto.pc"

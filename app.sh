@@ -97,7 +97,7 @@ popd
 
 _build() {
   _build_zlib
-  _build_openssl
+  # _build_openssl
   _build_curl
   _build_libevent
   _build_transmission

@@ -28,16 +28,16 @@ pushd "target/${FOLDER}"
   zlib-dynamic --with-zlib-include="${DEPS}/include" --with-zlib-lib="${DEPS}/lib" \
   shared threads linux-armv4 -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
   -Wa,--noexecstack -Wl,-z,noexecstack
-# sed -i -e "s/-O3//g" Makefile
+sed -i -e "s/-O3//g" Makefile
 make
 make install_sw
-# cp -vfa "${DEPS}/lib/libssl.so"* "${DEST}/lib/"
-# cp -vfa "${DEPS}/lib/libcrypto.so"* "${DEST}/lib/"
-# cp -vfaR "${DEPS}/lib/engines"* "${DEST}/lib/"
-# cp -vfaR "${DEPS}/lib/pkgconfig" "${DEST}/lib/"
-# rm -vf "${DEPS}/lib/libcrypto.a" "${DEPS}/lib/libssl.a"
-# sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libcrypto.pc"
-# sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libssl.pc"
+cp -vfa "${DEPS}/lib/libssl.so"* "${DEST}/lib/"
+cp -vfa "${DEPS}/lib/libcrypto.so"* "${DEST}/lib/"
+cp -vfaR "${DEPS}/lib/engines" "${DEST}/lib/"
+cp -vfaR "${DEPS}/lib/pkgconfig" "${DEST}/lib/"
+rm -vf "${DEPS}/lib/libcrypto.a" "${DEPS}/lib/libssl.a"
+sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libcrypto.pc"
+sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libssl.pc"
 popd
 }
 

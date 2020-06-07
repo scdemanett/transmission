@@ -78,7 +78,7 @@ popd
 _build_transmission() {
 local VERSION="2.94"
 local FOLDER="transmission-${VERSION}"
-local FILE="${FOLDER}.tar.xz"
+local FILE="${FOLDER}.tar.gz"
 local URL="https://github.com/transmission/transmission/archive/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"

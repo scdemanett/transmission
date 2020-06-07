@@ -31,14 +31,14 @@ pushd "target/${FOLDER}"
 sed -i -e "s/-O3//g" Makefile
 make
 make install_sw
-cp -vfa "${DEPS}/lib/libssl.so"* "${DEST}/lib/"
-cp -vfa "${DEPS}/lib/libcrypto.so"* "${DEST}/lib/"
-cp -vfaR "${DEPS}/lib/engines-1.1" "${DEST}/lib/"
-cp -vfaR "${DEPS}/lib/pkgconfig" "${DEST}/lib/"
-rm -vf "${DEPS}/lib/libcrypto.a" "${DEPS}/lib/libssl.a"
-sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libcrypto.pc"
-sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/libssl.pc"
-sed -e "s|^libdir=.*|libdir=${DEST}/lib|g" -i "${DEST}/lib/pkgconfig/openssl.pc"
+cp -vfa "${DEST}/etc/ssl/libssl.so"* "${DEST}/lib/"
+cp -vfa "${DEST}/etc/ssl/libcrypto.so"* "${DEST}/lib/"
+cp -vfaR "${DEST}/etc/ssl/engines-1.1" "${DEST}/lib/"
+cp -vfaR "${DEST}/etc/ssl/pkgconfig" "${DEST}/lib/"
+rm -vf "${DEST}/etc/ssl${DEST}/etc/ssl/libcrypto.a" "${DEST}/etc/ssl/libssl.a"
+sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl|g" -i "${DEST}/etc/ssl/pkgconfig/libcrypto.pc"
+sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl|g" -i "${DEST}/etc/ssl/pkgconfig/libssl.pc"
+sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl|g" -i "${DEST}/etc/ssl/pkgconfig/openssl.pc"
 popd
 }
 

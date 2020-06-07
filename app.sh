@@ -76,13 +76,12 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
-local APP="transmission"
 local VERSION="2.94"
 local FOLDER="transmission-${VERSION}"
-local FILE="${FOLDER}.tar.gz"
-local URL="https://github.com/transmission/transmission/archive/${FILE}"
+local FILE="${FOLDER}.tar.xz"
+local URL="https://github.com/transmission/transmission-releases/raw/master/${FILE}"
 
-_download_tgz "${APP}-${FILE}" "${URL}" "${FOLDER}"
+_download_xz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"
 PKG_CONFIG_PATH="${DEST}/lib/pkgconfig" \
   ./configure --host="${HOST}" --prefix="${DEST}" \

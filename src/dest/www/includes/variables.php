@@ -1,8 +1,8 @@
 <?php
 $app = "transmission";
 $appname = "Transmission";
-$appversion = "3.00";
-$appsite = "http://www.transmissionbt.com/";
+$appversion = "2.94";
+$appsite = "htt://www.transmissionbt.com/";
 $apphelp = "https://trac.transmissionbt.com/";
 
 $applogs = array("/tmp/DroboApps/".$app."/log.txt",

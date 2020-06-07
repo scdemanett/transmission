@@ -21,12 +21,12 @@ local FILE="${FOLDER}.tar.gz"
 local URL="http://www.openssl.org/source/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"
-# cp -vf "src/${FOLDER}-parallel-build.patch" "target/${FOLDER}/"
+cp -vf "src/${FOLDER}-parallel-build.patch" "target/${FOLDER}/"
 pushd "target/${FOLDER}"
-# patch -p1 -i "${FOLDER}-parallel-build.patch"
-./Configure --prefix="${DEPS}" --openssldir="${DEST}/etc/ssl" \
+patch -p1 -i "${FOLDER}-parallel-build.patch"
+./Configure --prefix="${DEST}/etc/ssl" --openssldir="${DEST}/etc/ssl" \
   zlib-dynamic --with-zlib-include="${DEPS}/include" --with-zlib-lib="${DEPS}/lib" \
-  shared threads linux-armv4 -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
+  shared threads linux-armv4 no-weak-ssl-ciphers -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
   -Wa,--noexecstack -Wl,-z,noexecstack
 sed -i -e "s/-O3//g" Makefile
 make

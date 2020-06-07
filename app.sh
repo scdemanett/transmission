@@ -54,7 +54,7 @@ pushd "target/${FOLDER}"
 ./configure --host="${HOST}" --prefix="${DEPS}" \
   --libdir="${DEST}/lib" --disable-static \
   --disable-debug --disable-curldebug \
-  --with-zlib="${DEPS}" --with-ssl="${DEPS}" --with-random \
+  --with-zlib="${DEPS}" --with-ssl="${DEST}/etc/ssl" --with-random \
   --with-ca-bundle="${DEST}/etc/ssl/certs/ca-certificates.crt" --enable-ipv6
 make
 make install

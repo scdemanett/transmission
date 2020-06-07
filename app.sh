@@ -21,9 +21,7 @@ local FILE="${FOLDER}.tar.gz"
 local URL="http://www.openssl.org/source/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"
-# cp -vf "src/${FOLDER}-parallel-build.patch" "target/${FOLDER}/"
 pushd "target/${FOLDER}"
-# patch -p1 -i "${FOLDER}-parallel-build.patch"
 ./Configure --prefix="${DEPS}" --openssldir="${DEST}/etc/ssl" \
   zlib-dynamic --with-zlib-include="${DEPS}/include" --with-zlib-lib="${DEPS}/lib" \
   shared threads linux-armv4 -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
@@ -76,7 +74,7 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
-local VERSION="2.94"
+local VERSION="3.00"
 local FOLDER="transmission-${VERSION}"
 local FILE="${FOLDER}.tar.xz"
 local URL="https://github.com/transmission/transmission-releases/raw/master/${FILE}"

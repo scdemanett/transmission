@@ -76,6 +76,7 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
+local APP="transmission"
 local VERSION="2.94"
 local FOLDER="transmission-${VERSION}"
 local FILE="${FOLDER}.tar.gz"

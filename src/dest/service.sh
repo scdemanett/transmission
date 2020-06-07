@@ -31,6 +31,11 @@ fi
 
 start() {
   export TRANSMISSION_WEB_HOME="${prog_dir}/app"
+
+  # For 3.00 To Allow HTTPS Though Not Recommended
+  export TR_CURL_SSL_NO_VERIFY=1
+  # https://github.com/transmission/transmission/pull/334
+  
   "${daemon}" --config-dir "${homedir}" --pid-file "${pidfile}" --logfile "${tmp_dir}/${name}.log"
   sleep 1
   renice "${nicelevel}" $(cat "${pidfile}")

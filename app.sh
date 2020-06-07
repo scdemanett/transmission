@@ -24,21 +24,18 @@ _download_tgz "${FILE}" "${URL}" "${FOLDER}"
 # cp -vf "src/${FOLDER}-parallel-build.patch" "target/${FOLDER}/"
 pushd "target/${FOLDER}"
 # patch -p1 -i "${FOLDER}-parallel-build.patch"
-./Configure --prefix="${DEST}/etc/ssl" --openssldir="${DEST}/etc/ssl" \
+./Configure --prefix="${DEPS}" --openssldir="${DEST}/etc/ssl" \
   zlib-dynamic --with-zlib-include="${DEPS}/include" --with-zlib-lib="${DEPS}/lib" \
-  shared threads linux-armv4 no-weak-ssl-ciphers -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
+  shared threads linux-armv4 -DL_ENDIAN ${CFLAGS} ${LDFLAGS} \
   -Wa,--noexecstack -Wl,-z,noexecstack
 sed -i -e "s/-O3//g" Makefile
 make
 make install_sw
-cp -vfa "${DEST}/etc/ssl/lib/libssl.so"* "${DEST}/lib/"
-cp -vfa "${DEST}/etc/ssl/lib/libcrypto.so"* "${DEST}/lib/"
-cp -vfaR "${DEST}/etc/ssl/lib/engines-1.1" "${DEST}/lib/"
-cp -vfaR "${DEST}/etc/ssl/lib/pkgconfig" "${DEST}/lib/"
-rm -vf "${DEST}/etc/ssl/lib/libcrypto.a" "${DEST}/etc/ssl/lib/libssl.a"
-sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl/lib|g" -i "${DEST}/lib/pkgconfig/libcrypto.pc"
-sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl/lib|g" -i "${DEST}/lib/pkgconfig/libssl.pc"
-sed -e "s|^libdir=.*|libdir=${DEST}/etc/ssl/lib|g" -i "${DEST}/lib/pkgconfig/openssl.pc"
+cp -vfa "${DEPS}/lib/libssl.so"* "${DEST}/lib/"
+cp -vfa "${DEPS}/lib/libcrypto.so"* "${DEST}/lib/"
+cp -vfaR "${DEPS}/lib/engines"* "${DEST}/lib/"
+cp -vfaR "${DEPS}/lib/pkgconfig" "${DEST}/lib/"
+rm -vf "${DEPS}/lib/libcrypto.a" "${DEPS}/lib/libssl.a"
 popd
 }
 
@@ -79,12 +76,12 @@ popd
 
 ### TRANSMISSION ###
 _build_transmission() {
-local VERSION="3.00"
+local VERSION="2.94"
 local FOLDER="transmission-${VERSION}"
 local FILE="${FOLDER}.tar.xz"
-local URL="https://github.com/transmission/transmission-releases/raw/master/${FILE}"
+local URL="https://github.com/transmission/transmission/archive/${FILE}"
 
-_download_xz "${FILE}" "${URL}" "${FOLDER}"
+_download_tgz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"
 PKG_CONFIG_PATH="${DEST}/lib/pkgconfig" \
   ./configure --host="${HOST}" --prefix="${DEST}" \

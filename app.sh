@@ -3,7 +3,7 @@ _build_zlib() {
 local VERSION="1.2.11"
 local FOLDER="zlib-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
-local URL="http://zlib.net/${FILE}"
+local URL="https://zlib.net/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"
@@ -18,7 +18,7 @@ _build_openssl() {
 local VERSION="1.1.1g"
 local FOLDER="openssl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
-local URL="http://www.openssl.org/source/${FILE}"
+local URL="https://www.openssl.org/source/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"
@@ -42,7 +42,7 @@ _build_curl() {
 local VERSION="7.70.0"
 local FOLDER="curl-${VERSION}"
 local FILE="${FOLDER}.tar.gz"
-local URL="http://curl.haxx.se/download/${FILE}"
+local URL="https://curl.haxx.se/download/${FILE}"
 
 _download_tgz "${FILE}" "${URL}" "${FOLDER}"
 pushd "target/${FOLDER}"
@@ -97,6 +97,7 @@ _build_certificates() {
 # sudo update-ca-certificates
 mkdir -vp "${DEST}/etc/ssl/certs/"
 cp -vf /etc/ssl/certs/ca-certificates.crt "${DEST}/etc/ssl/certs/"
+ln -vfs certs/ca-certificates.crt "${DEST}/etc/ssl/cert.pem"
 }
 
 _build() {
